@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Dropbox</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="container">
+        <h1>Online Dropbox</h1>
+        <input type="file" id="fileInput">
+        <button id="uploadButton">Upload</button>
+        <button id="createFolderButton">Create Folder</button>
+        <div id="progressContainer" style="display: none;">
+            <progress id="uploadProgress" value="0" max="100"></progress>
+            <span id="progressText">0%</span>
+        </div>
+        <button id="showFilesButton">Show Uploaded Files</button>
+        <div id="fileList" style="display: none;"></div>
+    </div>
+    
+    <!-- Firebase SDK -->
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
+        import { getStorage, ref, uploadBytesResumable, listAll, getDownloadURL, deleteObject } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-storage.js";
+        
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyASzyBBas-oBhWlb8-Gjl6HmCGeAQpLHB0",
+            authDomain: "online-file-storage-system.firebaseapp.com",
+            projectId: "online-file-storage-system",
+            storageBucket: "online-file-storage-system.appspot.com",
+            messagingSenderId: "363564174620",
+            appId: "1:363564174620:web:773f4e5f1b288f6550fed9",
+            measurementId: "G-ECGBE34RX4"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const storage = getStorage(app);
+        window.firebaseStorage = storage;
+        window.firebaseStorageRef = ref;
+        window.firebaseUploadBytesResumable = uploadBytesResumable;
+        window.firebaseListAll = listAll;
+        window.firebaseGetDownloadURL = getDownloadURL;
+        window.firebaseDeleteObject = deleteObject;
+    </script>
+    <script src="app.js" type="module"></script>
+</body>
+</html>
